@@ -33,6 +33,8 @@ def dowload_info(areaId_list, areaType, year_list, month_list, province):
         fcsv = open(province +'.csv', 'a', encoding='utf-8', newline='')
         csv_write = csv.writer(fcsv)
         for year in year_list:
+            # print(year_list)
+            print(year)
             if year == now_year:
                 month_list = list(range(1, now_month + 1))
             for month in month_list:
@@ -75,7 +77,7 @@ def get_weather():
     csv_name = list(get_city_code().keys())
     year_list = list(range(now_year-11, now_year+1))
     month_list = list(range(1, 13))
-    areaType = 2
+    areaType = config.areaType  # 地区（国内与国外）
 
     with ThreadPoolExecutor(len(csv_name)) as t:
         for province in csv_name:
